@@ -30,19 +30,18 @@ function Form({ sortBy }) {
 
   const onClickToAddTask = (e) => {
     e.preventDefault();
-    // eslint-disable-next-line no-labels
-    task_cheking: {
-      if (newTask.task.length > 0) {
-        if (!deadlineDisabled) {
-          if ((taskDeadline.date !== '') & (taskDeadline.time !== '')) {
-            renderTask();
-          } else {
-            alert('Заполните поля для дэдлайна!');
-            break task_cheking;
-          }
-        }
+    if (newTask.task.length === 0) {
+      alert('Заполните текст задачи!');
+      return;
+    }
+    if (deadlineDisabled) {
+      renderTask();
+    } else {
+      if ((taskDeadline.date !== '') & (taskDeadline.time !== '')) {
         renderTask();
-      } else alert('Заполните текст задачи!');
+      } else {
+        alert('Заполните поля для дэдлайна!');
+      }
     }
   };
 
